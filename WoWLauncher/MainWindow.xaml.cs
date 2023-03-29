@@ -95,5 +95,10 @@ namespace WoWLauncher
                 Application.Current.Shutdown(); // close launcher, maybe make this an option?
             }
         }
+
+        private void True(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

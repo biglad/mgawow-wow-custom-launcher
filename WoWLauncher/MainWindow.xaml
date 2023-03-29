@@ -21,7 +21,7 @@
                     Background="{TemplateBinding Panel.Background}"
                     Name="border"
                     SnapsToDevicePixels="True">
-                        <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Name="PART_ContentHost" Focusable="False" />
+                            <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Name="PART_ContentHost" Focusable="False" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="UIElement.IsEnabled" Value="False">
@@ -116,29 +116,67 @@
             </Button.Background>
         </Button>
 
-        <Image x:Name="serverStatusIcon" HorizontalAlignment="Left" Height="20" Margin="80,480,0,0" VerticalAlignment="Top" Width="22" Source="/WoWLauncher;component/images/Indicator-Yellow.PNG" Stretch="None"/>
-        <Label x:Name="serverStatus" Content="Checking server status..." HorizontalAlignment="Left" Margin="99,473,0,0" VerticalAlignment="Top" Width="249" FontSize="20" FontWeight="Bold" Foreground="White" FontFamily="Californian FB"/>
+
+
+        <Image x:Name="serverStatusIcon" HorizontalAlignment="Left" Height="20" Margin="80,480,0,0" VerticalAlignment="Top" Width="22" Source="/WoWLauncher;component/images/Indicator-GReen.PNG" Stretch="None"/>
+        <Label x:Name="serverStatus" Content="Server Online" HorizontalAlignment="Left" Margin="99,473,0,0" VerticalAlignment="Top" Width="249" FontSize="16" FontWeight="Bold" Foreground="Green" FontFamily="Verdana"/>
         <ProgressBar x:Name="progressBar" HorizontalAlignment="Left" Height="42" Margin="80,517,0,0" VerticalAlignment="Top" Width="537" Foreground="#FF06A4B0" BorderThickness="0,0,0,0" Background="#FF192D33"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="60,498,0,0" VerticalAlignment="Top" Width="575" Source="/WoWLauncher;component/images/PatchBar.png"/>
 
         <RichTextBox Margin="99,278,100,187" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True" SelectionTextBrush="{x:Null}" Focusable="False" AllowDrop="False" FontFamily="Californian FB" IsDocumentEnabled="True" Cursor="Arrow" >
             <FlowDocument>
                 <Paragraph TextAlignment="Center">
-                    <Run Text="Welcome to some Private Server!" FontSize="32" FontWeight="Bold" />
+                    <Run Text="Welcome to MGAWoW" FontSize="32" FontWeight="Bold" FontFamily="Verdana" Foreground="gold" />
                 </Paragraph>
                 <Paragraph TextAlignment="Center">
-                    <Run Text="In order to play, you must have an account on" FontSize="18"/>
-                    <TextBlock>                
-                        <Hyperlink NavigateUri="https://example.com" FontSize="18" ToolTip="Some Company" Foreground="Cyan" RequestNavigate="Hyperlink_RequestNavigate" >
-                           https://example.com
+                    <!--<Run Text="Create Account" FontSize="18"/>-->
+                    <TextBlock>  
+						<Run Text=" | "/>
+                        <Hyperlink NavigateUri="https://mgawow.online/news/" FontSize="18" ToolTip="Realm News" Foreground="Gold" RequestNavigate="Hyperlink_RequestNavigate" FontFamily="Verdana" >
+                           Realm News
                         </Hyperlink>
+						<Run Text=" | "/>
+                        <Hyperlink NavigateUri="https://mgawow.online/register/" FontSize="18" ToolTip="Create Account" Foreground="Gold" RequestNavigate="Hyperlink_RequestNavigate" FontFamily="Verdana" >
+                           Create Account
+                        </Hyperlink>
+						<Run Text=" | "/>
+                        <Hyperlink NavigateUri="https://mgawow.online/vote/" FontSize="18" ToolTip="Vote 4 Rewards" Foreground="Gold" RequestNavigate="Hyperlink_RequestNavigate" FontFamily="Verdana" >
+                           Vote
+                        </Hyperlink>
+						<Run Text=" | "/>	
+                        <Hyperlink NavigateUri="https://mgawow.online/raf/" FontSize="18" ToolTip="Recruit-A-Friend" Foreground="Gold" RequestNavigate="Hyperlink_RequestNavigate" FontFamily="Verdana" >
+                           Recruit-A-Friend
+                        </Hyperlink>
+						<Run Text=" | "/>						
+                        <Hyperlink NavigateUri="https://mgawow.online/voteshop/" FontSize="18" ToolTip="Vote Shop" Foreground="Gold" RequestNavigate="Hyperlink_RequestNavigate" FontFamily="Verdana" >
+                           Vote Shop
+                        </Hyperlink>
+						<Run Text=" | "/>
                     </TextBlock>
-                    <Run Text="."/>
+					
+
                 </Paragraph>
+				<Paragraph TextAlignment="Center">
+			
+				</Paragraph>
+				
                 <Paragraph TextAlignment="Center">
-                    <Run Text="For assistance, please reach out to someone else."  FontSize="14"/>
+                    <!-- ADD TEXT IF NEEDED -->
+                    <Run Text="In game type /join world - To Join The Global Chat Channel"  FontSize="14" Foreground="Gold" FontFamily="Verdana" />
+                    <!-- Web Browser Control that hosts a web page. -->
+                    <!--<WebBrowser x:Name="webBrowser" Visibility="Visible" Source="http://mgawow.online/news.html" Width="650" Height="110" IsEnabled="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Focusable="False" IsHitTestVisible="False" ToolTip="TEST" ></WebBrowser>-->
+
+                </Paragraph>
+				
+                <Paragraph TextAlignment="Center">
+                    <!-- ADD TEXT IF NEEDED -->
+                    <Run Text="Don't forget to vote every 12 hours."  FontSize="14" Foreground="Gold" FontFamily="Verdana" />
+                    <!-- Web Browser Control that hosts a web page. -->
+                    <!--<WebBrowser x:Name="webBrowser" Visibility="Visible" Source="http://mgawow.online/news.html" Width="650" Height="110" IsEnabled="True" ScrollViewer.VerticalScrollBarVisibility="Disabled" Focusable="False" IsHitTestVisible="False" ToolTip="TEST" ></WebBrowser>-->
+
                 </Paragraph>
             </FlowDocument>
+
         </RichTextBox>
         <Label x:Name="progressInfo" Content="0% (Downloaded 0/0 MB, 0 Mb/s)" HorizontalAlignment="Left" Margin="80,564,0,0" VerticalAlignment="Top" Width="537" Foreground="#FF4ABDE4" FontFamily="Californian FB" Visibility="Hidden"/>
         <Button Style="{DynamicResource CloseBtn}" HorizontalAlignment="Left" Margin="782,136,0,0" VerticalAlignment="Top" Height="42" Width="43" Foreground="{x:Null}" BorderBrush="{x:Null}" Click="Close_Click">
