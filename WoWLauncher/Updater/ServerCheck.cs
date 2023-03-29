@@ -53,7 +53,7 @@ namespace WoWLauncher.Updater
             {
                 // Create a simple TCP client to ping a port
                 using TcpClient _tcpClient = new TcpClient();
-                IAsyncResult _asyncConnectionResult = _tcpClient.BeginConnect(m_UpdaterRef.RealmAddress, 8085, null, null);
+                IAsyncResult _asyncConnectionResult = _tcpClient.BeginConnect(m_UpdaterRef.RealmAddress, 8086, null, null);
                 WaitHandle _asyncConnectionWaitHandle = _asyncConnectionResult.AsyncWaitHandle;
 
                 try
