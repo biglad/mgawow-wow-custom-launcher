@@ -7,7 +7,7 @@ internal class Program
 {
     // Program running flag
     private static bool m_Running;
-    private static string m_ClientUpdateUri = "https://www.example.com/Patch/client.zip";
+    private static string m_ClientUpdateUri = "https://mgawow.online/Patch/client.zip";
 
     /*
      * HOW TO ORGANIZE YOUR PATCH SERVER

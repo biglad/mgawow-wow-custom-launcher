@@ -25,9 +25,9 @@ namespace WoWLauncher.Patcher
         private readonly Stopwatch m_DownloadStopWatch;
 
         // Textfile containing patches (seperated on each line, md5 checksum next to it, e.g: Patch-L.mpq 6fd76dec2bbca6b58c7dce68b497e2bf)
-        private string m_PatchListUri = "https://example.com/Patch/plist.txt";
+        private string m_PatchListUri = "https://mgawow.online/Patch/plist.txt";
         // Folder containing the individual patches, as listed in the patch list file
-        private string m_PatchUri = "https://example.com/Patch/";
+        private string m_PatchUri = "https://mgawow.online/Patch/";
 
         /*
          * HOW TO ORGANIZE YOUR PATCH SERVER
