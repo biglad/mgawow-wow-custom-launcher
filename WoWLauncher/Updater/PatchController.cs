@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Windows;
@@ -15,6 +16,26 @@ namespace WoWLauncher.Patcher
     /// </summary>
     internal class PatchController
     {
+
+        private static DateTimeOffset currentTime;
+        //DateTime currentTime = DateTime.UtcNow;
+        static long unixTime = ((DateTimeOffset)currentTime).ToUnixTimeSeconds();
+        // end to the end of all downloads
+        //"?timestamp="+unixTime.toString();
+        // Program running flag
+
+        // private static readonly string unixTime = "1";
+        private static readonly Random getrandom = new Random();
+
+        public static int GetRandomNumber(int min, int max)
+        {
+            lock (getrandom) // synchronize
+            {
+                return getrandom.Next(min, max);
+            }
+        }
+        //static long unixTime = GetRandomNumber(0, 10000);
+
         // Reference parent window
         private MainWindow m_WndRef;
 
@@ -25,7 +46,7 @@ namespace WoWLauncher.Patcher
         private readonly Stopwatch m_DownloadStopWatch;
 
         // Textfile containing patches (seperated on each line, md5 checksum next to it, e.g: Patch-L.mpq 6fd76dec2bbca6b58c7dce68b497e2bf)
-        private string m_PatchListUri = "https://mgawow.online/Patch/plist.txt";
+        private string m_PatchListUri = "https://mgawow.online/Patch/plist.txt?timestamp=" + unixTime.ToString();
         // Folder containing the individual patches, as listed in the patch list file
         private string m_PatchUri = "https://mgawow.online/Patch/";
 

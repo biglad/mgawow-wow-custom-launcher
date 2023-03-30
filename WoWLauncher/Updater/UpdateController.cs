@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Reflection;
 using System.Windows;
 
@@ -74,6 +75,8 @@ namespace WoWLauncher.Updater
             // Begin downloading update info
             using (WebClient wc = new())
             {
+                HttpRequestCachePolicy noCachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
+                wc.CachePolicy = noCachePolicy;
                 wc.DownloadStringAsync(new Uri(m_UpdateVersionUri), "Cache/L/version.txt");
                 wc.DownloadStringCompleted += update_DoneRetrieveAsync;
             }

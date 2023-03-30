@@ -2,12 +2,31 @@
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Net;
+using System.Net.Cache;
 
 internal class Program
 {
+    private static DateTimeOffset currentTime;
+    //DateTime currentTime = DateTime.UtcNow;
+    static long unixTime = ((DateTimeOffset)currentTime).ToUnixTimeSeconds();
+    // end to the end of all downloads
+    //"?timestamp="+unixTime.toString();
+    // Program running flag
+
+    // private static readonly string unixTime = "1";
+    private static readonly Random getrandom = new Random();
+
+    public static int GetRandomNumber(int min, int max)
+    {
+        lock (getrandom) // synchronize
+        {
+            return getrandom.Next(min, max);
+        }
+    }
+    //static long unixTime = GetRandomNumber(0, 10000);
     // Program running flag
     private static bool m_Running;
-    private static string m_ClientUpdateUri = "https://mgawow.online/Patch/client.zip";
+    private static string m_ClientUpdateUri = "http://mgawow.online/Patch/client1.zip?timestamp=" + unixTime.ToString();//  unixTime.toString();  // set to no caching on php
 
     /*
      * HOW TO ORGANIZE YOUR PATCH SERVER
@@ -47,6 +66,8 @@ internal class Program
         // fetch zip
         using (WebClient wc = new())
         {
+            HttpRequestCachePolicy noCachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
+            wc.CachePolicy = noCachePolicy;
             wc.DownloadProgressChanged += update_Progress;
             wc.DownloadFileAsync(new Uri(m_ClientUpdateUri), "Cache/L/launcher.zip");
             wc.DownloadFileCompleted += update_Completed;
@@ -99,10 +120,16 @@ internal class Program
         try
         {
             ZipFile.ExtractToDirectory("Cache/L/launcher.zip", Directory.GetCurrentDirectory(), true);
+            Console.WriteLine($"> ALL DONE");
+            Thread.Sleep(1000);
         }
-        catch
+        catch (Exception e)
         {
-            Console.WriteLine($"> Can't unzip update. Try again... ");
+            //Console.WriteLine($"> Can't unzip update. Try again... ");
+            Console.WriteLine($" ");
+            //Console.WriteLine(e.Message);
+            //Console.WriteLine("https://mgawow.online/Patch/client.php?timestamp="+unixTime.ToString());
+            //Thread.Sleep(5000);
         };
     }
 
@@ -116,14 +143,23 @@ internal class Program
             File.Delete("Cache/L/launcher.zip");
 
         // If the launcher is here (it should be), launch it again
-        if (File.Exists("WoWLauncher.exe"))
+        if (File.Exists("update.bat"))
         {
-            Process.Start(new ProcessStartInfo("WoWLauncher.exe")
+            try
             {
-                UseShellExecute = true
-            });
+                Process.Start(new ProcessStartInfo("update.bat")
+                {
+                    UseShellExecute = true
+                });
+            }
+            catch
+            {
+                Console.WriteLine($"YOU CLICK NO!");
+                Thread.Sleep(5000);
+                m_Running = false;
+            }
         }
-        
+
         // Exit
         m_Running = false;
     }
