@@ -17,7 +17,7 @@
     <Product>MGAWoW Launcher</Product>
     <Copyright>MGAWoW 2008-2023</Copyright>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>12.0</Version>
+    <Version>13.0</Version>
     <RepositoryUrl>https://github.com/biglad/mgawow-wow-custom-launcher</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
